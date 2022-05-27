@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTime>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,5 +22,8 @@ public slots:
 private:
     Ui::MainWindow *ui;
     QVector <double> x,y,z;
+    double time;
+    QTime *_mTimer;
+
 };
 #endif // MAINWINDOW_H

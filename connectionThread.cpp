@@ -24,10 +24,8 @@ void connectionThread::run(){
     if(! socket->waitForConnected(3000)){
     qDebug()<<"Not C";
     }
-
-
     
-    exec();
+    //exec();
 }
 
 
