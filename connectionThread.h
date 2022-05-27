@@ -22,7 +22,7 @@ public slots:
     void readyRead();
 signals:
 
-    void newDataReceived();
+    void toGraphData(QByteArray);
 
 private:
     QTcpSocket *socket;

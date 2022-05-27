@@ -15,7 +15,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void parseData(QByteArray);
+
 private:
     Ui::MainWindow *ui;
+    QVector <double> x,y,z;
 };
 #endif // MAINWINDOW_H

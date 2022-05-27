@@ -51,15 +51,7 @@ void connectionThread:: bytesWritten(qint64 bytes){
 }
 
 void connectionThread:: readyRead(){
-    qDebug()<<"Reading";
     QByteArray Data = socket->readAll();
-
-
-    quint32 data_l;
-     memcpy(&data_l,Data.constData(),4);
-
-    qDebug()<<Data<<"is: "<<data_l;
-
-    emit(newDataReceived());
+    emit(toGraphData(Data));
 
 }
