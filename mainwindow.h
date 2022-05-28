@@ -8,6 +8,11 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+typedef struct {
+    uint8_t validCount;
+    double image_var[10];
+}protocolStruct;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -24,6 +29,8 @@ private:
     QVector <double> x,y,z;
     double time;
     QTime *_mTimer;
+    protocolStruct receivedDataPacket;
+
 
 };
 #endif // MAINWINDOW_H
