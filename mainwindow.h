@@ -33,7 +33,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QVector <double> x,y,z;
-    double time;
     double cutFrequency;
     QTimer *_mTimer;
     protocolStruct receivedDataPacket;

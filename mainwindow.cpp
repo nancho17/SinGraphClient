@@ -40,7 +40,6 @@ MainWindow::MainWindow(QWidget *parent)
     _mTimer->start(100);
 
     connect(_mTimer, &QTimer::timeout, this, &MainWindow::graphData);
-    time=0;
 
     graphMutex=new QMutex;
     evntMutex=new QMutex;
@@ -63,13 +62,13 @@ void MainWindow::graphData(void)
     ui->widget->graph(0)->setData(x, y);
     ui->widget->graph(1)->setData(x, z);
     graphMutex->unlock();
-    ui->widget->xAxis->setRange(x.last(), 0.090, Qt::AlignRight);
+    ui->widget->xAxis->setRange(x.last(), 0.080, Qt::AlignRight);
     ui->widget->replot();
 
     graphMutex->lock();
     ui->widget_2->graph(0)->setData(x, z);
     graphMutex->unlock();
-    ui->widget_2->xAxis->setRange(x.last(), 0.090, Qt::AlignRight);
+    ui->widget_2->xAxis->setRange(x.last(), 0.080, Qt::AlignRight);
     ui->widget_2->replot();
 
 }
@@ -79,7 +78,7 @@ void MainWindow::parseData(QByteArray Data)
     memcpy((char *) &receivedDataPacket, Data.constData(), sizeof(protocolStruct));
 
     // Filter Calc
-    double delta_time = 0.0002;
+    const double delta_time = 0.0002; //Can be obtained from samples
     evntMutex->lock();
     double RC = 1 / (cutFrequency * 2 * M_PI);
     evntMutex->unlock();
@@ -90,10 +89,8 @@ void MainWindow::parseData(QByteArray Data)
     {
         graphMutex->lock();
         y.append(receivedDataPacket.imageVar[i]);
-        x.append(time);
+        x.append(receivedDataPacket.timeVar[i]);
         graphMutex->unlock();
-
-        time = time + delta_time;
         // Apply a filter
         if (z.empty())
         {

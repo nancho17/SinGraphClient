@@ -80,7 +80,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Set</string>
+     <string>Apply</string>
     </property>
    </widget>
    <widget class="QComboBox" name="comboBox">
